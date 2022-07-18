@@ -14,16 +14,17 @@ brew install bash
 
 # Running the Vault HA Cluster with Raft integrated storage
 The following block actions are executed by the functions from the script:
- - validating the environment
- - creating the transit Vault server
- - start and unseal the first Vault Server used as transit for unsealing key
- - Create the unseal transit key
- - Create Vault configuration files,in a dynamic way, cluster nodes (n-1) by specifying the variable
-a_vaultcnt=6
-(default if 6 Vault servers, one transit "in memory" server and 5 Vault servers running in a HA Cluster and having as Raft as storage backed).
- - Recover the shared key from initialization from transit Vaul and create a temporary store of VAULT_TOKEN (only for testing purposes)
- - Enable a secret engine type KV in the path kv of version kv-v2
+ - Validating the environment directory.
+ - Creating the transit Vault server as (vault-1).
+ - Start and unseal the first Vault Server (vault-i) used as transit for store the unsealing transit key.
+ - Create the unseal transit key.
+ - Create the Vault configuration files, in a dynamic way, cluster nodes (n-1) (./vault/config/vault-1 ./vault/config/vault-2 ...).
+ - For example, by specifying the variable a_vaultcnt=6, the number of Vault servers created is 6: one transit "in memory" Vault server and 5 Vault servers running in a HA Cluster with Raft as storage backed.
+ - Recover the shared key from initialization from transit Vault (vault-1) and create a temporary store of VAULT_TOKEN (only for testing purposes).
+ - Enable a secret engine type KV in the path kv of version kv-v2.
  - Store a secret into apikey with field webapp=testvalueinthefield.
+ - Stop every Vault server (vault-n, vault-(n-1),..., vault-2, vault-1).
+ - Clean-up the files and folders: ./vault/config ./vault/data ./vault/logs
  
 
 # How to create the Vault HA Cluster
@@ -31,41 +32,41 @@ a_vaultcnt=6
 ```
 git clone github.com/FlorinTP/vault_raft_localhost
 ```
-- If an enterprise binery is used then the license file should be copied into:
+- If an enterprise binary is used, then the license file should be copied into:
 "./vault/config/license.hclic"
 - Adapt the number of retries for actions by modifying the variable
 (default RETRY=6)
 RETRYS
-- Adapt the DEBUG mode by modifying the variable
+- Choose the running mode by modifying number value from the initilization variable DEBUG 
 (default DEBUG=0)
-- Adapt the TEST time for which the Servers should be up and running.
+- For any non-zero value DEBUG the script will run in interactive mode and will prompt for actions.
+- While runing in non-interactive mode (DEBUG="0") the variable TESTWINDOW will configure the wait time for keeping the Vault Servers running. If the script is running in interactive mode (debug mode), then this variable is ingnored. 
 - Execute the script as
 ```
+cd vault_raft_localhost
 bash create_cluster.sh
 ```
 - Open another terminal console on the host and 
-and oobserve the root_token files needed to login to UI.
+and observe the root_token files needed to login to UI.
 - Open a browser and login to Vault (transit) Server at http://localhost:8200
-by using the token from vault/config/root_token-vault_1
+(* using the token from vault/config/root_token-vault_1 )
 - For login to the Vault cluster you may use any of the cluster nodes (port= 10*n + 8200)
-for example, for UI access on node 2 you may use the address http://localhost:8210
-for UI access on node 3 you may use the address http://localhost:8220
-for UI access on node 4 you may use the address http://localhost:8230
-with the VAULT_TOKEN from root_token-vault_2
+- For example, for UI access on node 2 you may use the address http://localhost:8210
+- For UI access on node 3 you may use the address http://localhost:8220
+- For UI access on node 4 you may use the address http://localhost:8230
+(** by using the VAULT_TOKEN from vault/config/root_token-vault_2 )
 
 
 # Additional facts:
-- If the vault directory is present then a cleanu-up is needed.
-In this scenario the script is singaling the vault directory and echo the  delete instructions and exit.
-This is expected behavior on multiple executions.
+- If the vault directory is present then a clean-up is needed.
+In this scenario, the script is singaling the vault directory presence and prints the delete instructions and exit.
+This is expected behavior on multiple executions of the script.
 
-- For test purpose, the variable DEBUG may be set to a number value greater than "0".
+- For test purposes, the variable DEBUG may be set to a number value greater than "0".
 This will allow the validation and the test scenarios in a step-by-step fashion.
 - While running in DEBUG mode the script will wait for confirmation for every block action.
 
-# One successful execution (waiting for test window to finish looks likei):
-```
-tree
+# One successful execution (waiting for test window to finish) looks like:
 ```
 vault_raft_localhost $ tree
 .
@@ -119,3 +120,4 @@ vault_raft_localhost $ tree
         └── vault-6.pid
 
 19 directories, 29 files
+```
