@@ -10,6 +10,7 @@ As example for MAC, using brew:
 ```
 brew install vault
 brew install bash
+brew install git
 brew install gh
 ```
 
