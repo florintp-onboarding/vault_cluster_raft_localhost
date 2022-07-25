@@ -10,6 +10,7 @@ As example for MAC, using brew:
 ```
 brew install vault
 brew install bash
+brew install gh
 ```
 
 # Running the Vault HA Cluster with Raft integrated storage
@@ -31,6 +32,10 @@ The following block actions are executed by the functions from the script:
 - Clone the current repository or only the current script create_cluster.sh
 ```
 git clone https://github.com/florintp-onboarding/vault_cluster_raft_localhost
+```
+or
+```
+gh repo clone florintp-onboarding/vault_cluster_raft_localhost
 ```
 - If an enterprise binary is used, then the license file should be copied into:
 "./vault/config/license.hclic"
