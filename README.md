@@ -30,7 +30,7 @@ The following block actions are executed by the functions from the script:
 # How to create the Vault HA Cluster
 - Clone the current repository or only the current script create_cluster.sh
 ```
-git clone github.com/FlorinTP/vault_raft_localhost
+git clone https://github.com/florintp-onboarding/vault_cluster_raft_localhost
 ```
 - If an enterprise binary is used, then the license file should be copied into:
 "./vault/config/license.hclic"
