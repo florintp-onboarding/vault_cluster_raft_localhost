@@ -1,4 +1,6 @@
-# vault_raft_localhost
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/generate-root-tokens-using-unseal-keys/LICENSE)
+
+# Running a Vault clsuter with Raft storage backend on localhost
 
 The repository is used for creating a test Vault+Raft Integrated storage playground.
 The script is written in Bash and was successfully tested on MAC (Intel and M1).
