@@ -1,4 +1,4 @@
-[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/generate-root-tokens-using-unseal-keys/LICENSE)
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/vault_cluster_raft_localhost/LICENSE)
 
 # Running a Vault clsuter with Raft storage backend on localhost
 
