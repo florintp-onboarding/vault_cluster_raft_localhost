@@ -1,4 +1,5 @@
-[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/vault_cluster_raft_localhost/LICENSE)
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/vault_cluster_raft_localhost/blob/main/LICENSE)
+
 
 # Running a Vault clsuter with Raft storage backend on localhost
 
