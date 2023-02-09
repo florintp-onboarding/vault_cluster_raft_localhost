@@ -1,7 +1,7 @@
 [![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://github.com/florintp-onboarding/vault_cluster_raft_localhost/blob/main/LICENSE)
 
 
-# Running a Vault clsuter with Raft storage backend on localhost
+# Running a Vault cluster with Raft storage backend on localhost
 
 The repository is used for creating a test Vault+Raft Integrated storage playground.
 The script is written in Bash and was successfully tested on MAC (Intel and M1).
